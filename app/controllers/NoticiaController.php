@@ -16,6 +16,7 @@ class NoticiaController extends ControllerBase
     {
         $form = new CadastrarNoticiaForm();
         $this->view->pick("noticia/cadastrar");
+        //$this->view->categoria = Categoria::find();
         $this->view->form = $form;
     }
 
@@ -32,20 +33,38 @@ class NoticiaController extends ControllerBase
 
     public function salvarAction()
     {
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = new DateTime();
         if ($this->request->isPost()) {
             $form = new CadastrarNoticiaForm();
 
             if ($form->isValid($this->request->getPost())) {
                 $titulo = $this->request->getPost('titulo');
                 $texto = $this->request->getPost('texto');
+                $categorias = $this->request->getPost('categorias');
                 $id = $this->request->getPost('id');
+                $data_publicacao = $this->request->getPost('data_publicacao');
+                $publicado = $this->request->getPost('publicado');
 
                 if ($id) {
                     $noticia = Noticia::findFirst($id);
+                    $noticia->setDataUltimaAtualizacao(date("Y-m-d H:i:s"));
                 } else {
                     $noticia = new Noticia();
+                    $noticia->setDataCadastro(date("Y-m-d H:i:s"));
+                    $noticia->setDataUltimaAtualizacao(date("Y-m-d H:i:s"));
+                }
+
+                if ($publicado == '1') {
+                    $publicado = 'S';
+                    $noticia->setDataPublicacao(date("Y-m-d"), strtotime($data_publicacao));
+                } else {
+                    $publicado = 'N';
                 }
                 
+                $noticia->setPublicado($publicado);
+                $categorias = implode(",", $categorias);
+                $noticia->setCategoria($categorias);
                 $noticia->titulo = $titulo;
                 $noticia->texto = $texto;
 

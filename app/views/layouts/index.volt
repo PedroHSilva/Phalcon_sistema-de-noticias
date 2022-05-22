@@ -110,6 +110,14 @@
                 });
             });
 
+            function check_publicado(publicado) {
+                if(publicado.checked) {
+                    $('#data_publicacao').show();
+                } else {
+                    $('#data_publicacao').hide();
+                }
+            }
+            check_publicado(publicado);
         </script>
 		{% block extrafooter %}{% endblock %}
 

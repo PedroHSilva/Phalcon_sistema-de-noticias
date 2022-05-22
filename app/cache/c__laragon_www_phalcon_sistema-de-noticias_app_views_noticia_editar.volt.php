@@ -100,8 +100,8 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="form-group col-sm-12">
-                                                <p><strong>Data de Criação:</strong> 22/07/2017 11:18:22</p>
-                                                <p><strong>Data da Última Atualização:</strong> 22/07/2017 11:18:22</p>
+                                                <p><strong>Data de Criação:</strong> <?= date('d/m/Y H:i:s', strtotime($noticia->getDataCadastro())) ?></p>
+                                                <p><strong>Data da Última Atualização:</strong> <?= date('d/m/Y H:i:s', strtotime($noticia->getDataUltimaAtualizacao())) ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -116,6 +116,28 @@
                                                 <label for ="Texto">Texto</label>
                                                 <?= $form->render('texto', ['value' => $noticia->texto]) ?>
                                                 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="Publicado">Publicar?</label>
+                                                <?php if ($noticia->publicado == 'S') { ?>
+                                                    <?= $form->render('publicado', ['checked' => true]) ?>
+                                                <?php } else { ?>
+                                                    <?= $form->render('publicado') ?>
+                                                <?php } ?>
+                                            </div>                                
+                                        </div>
+                                        <div class="row" id="data_publicacao">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="Publicado">Data Publicação</label>
+                                                <?= $form->render('data_publicacao') ?>
+                                            </div>                                
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="categorias">Categorias</label>
+                                                <?= $form->render('categorias[]') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -160,6 +182,14 @@
                 });
             });
 
+            function check_publicado(publicado) {
+                if(publicado.checked) {
+                    $('#data_publicacao').show();
+                } else {
+                    $('#data_publicacao').hide();
+                }
+            }
+            check_publicado(publicado);
         </script>
 		
         

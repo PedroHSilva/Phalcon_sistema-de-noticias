@@ -17,15 +17,31 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                {{ form.render('titulo') }}
-                                                {# {{ text_field("titulo", "width": '100%', "class": 'form-control') }} #}
+                                                {{ form.render('titulo') }}                                                
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                {{ form.render('texto') }}
-                                                {# {{ text_area("texto", "class": 'form-control tinymce-editor') }} #}
+                                                {{ form.render('texto') }}                                            
+                                            </div>                                
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="Publicado">Publicado</label>
+                                                {{ form.render('publicado') }}
+                                            </div>                                
+                                        </div>
+                                        <div class="row" id="data_publicacao">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="Publicado">Data Publicação</label>
+                                                {{ form.render('data_publicacao') }}
+                                            </div>                                
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label for ="categorias">Categorias</label>
+                                                {{ form.render('categorias[]') }}
                                             </div>
                                         </div>
                                     </div>{#/.panel-body#}

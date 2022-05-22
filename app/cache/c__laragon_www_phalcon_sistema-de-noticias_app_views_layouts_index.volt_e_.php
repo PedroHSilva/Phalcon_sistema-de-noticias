@@ -83,7 +83,7 @@ a:7:{i:0;s:910:"<!DOCTYPE html>
 
             <?= $this->flash->output(true) ?>
 
-            ";s:7:"content";N;i:2;s:1139:"
+            ";s:7:"content";N;i:2;s:1426:"
 
             <div class="col-md-12 text-center">
                 <p>Copyright 2015 - Todos os Direitos reservados. <a href="http://www.siteparaimobiliaria.imb.br/" target="_blank">Site para imobiliária Midas</a></p>
@@ -110,6 +110,14 @@ a:7:{i:0;s:910:"<!DOCTYPE html>
                 });
             });
 
+            function check_publicado(publicado) {
+                if(publicado.checked) {
+                    $('#data_publicacao').show();
+                } else {
+                    $('#data_publicacao').hide();
+                }
+            }
+            check_publicado(publicado);
         </script>
 		";s:11:"extrafooter";N;i:3;s:18:"
 

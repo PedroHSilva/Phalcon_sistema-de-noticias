@@ -94,6 +94,7 @@
                     </div>
                     <?= $this->tag->form(['noticias/salvar', 'method' => 'post', 'enctype' => 'multipart/form-data', 'name' => 'cadastrar']) ?>
                         <?= $form->render('id', ['value' => $noticia->id]) ?>
+                        <?= $form->render('csrf', ['value' => $this->security->getToken()]) ?>
                         <div class="panel-body">
                             <div class="col-md-12"  id="conteudo">
                                 <div class="panel panel-default">

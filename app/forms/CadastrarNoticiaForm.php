@@ -11,6 +11,7 @@ use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Form;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\StringLength;
+use Phalcon\Validation\Validator\Identical;
 
 class CadastrarNoticiaForm extends Form
 {
@@ -69,5 +70,12 @@ class CadastrarNoticiaForm extends Form
         $data_publicacao = new Date('data_publicacao');
         $data_publicacao->setAttribute('class', 'form-control');
         $this->add($data_publicacao);
+
+        $csrf = new Hidden('csrf');
+        $csrf->addValidator(new Identical([
+            'value'     => $this->security->getSessionToken(),
+            'message'   => 'Acesso não autorizado',
+        ]));
+        $this->add($csrf);
     }
 }

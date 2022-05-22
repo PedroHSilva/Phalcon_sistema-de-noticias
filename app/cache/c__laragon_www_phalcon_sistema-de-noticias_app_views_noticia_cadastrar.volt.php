@@ -100,13 +100,15 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <?= $this->tag->textField(['titulo', 'width' => '100%', 'class' => 'form-control']) ?>
+                                                <?= $form->render('titulo') ?>
+                                                
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                <?= $this->tag->textArea(['texto', 'class' => 'form-control tinymce-editor']) ?>
+                                                <?= $form->render('texto') ?>
+                                                
                                             </div>
                                         </div>
                                     </div>

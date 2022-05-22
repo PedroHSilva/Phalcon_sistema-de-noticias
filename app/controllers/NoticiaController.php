@@ -1,5 +1,6 @@
 <?php
 
+use App\Forms\CadastrarNoticiaForm;
 
 class NoticiaController extends ControllerBase
 {
@@ -13,9 +14,9 @@ class NoticiaController extends ControllerBase
 
     public function cadastrarAction()
     {
-        
+        $form = new CadastrarNoticiaForm();
         $this->view->pick("noticia/cadastrar");
-
+        $this->view->form = $form;
     }
 
     public function editarAction($id)

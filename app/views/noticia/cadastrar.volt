@@ -17,13 +17,15 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                {{ text_field("titulo", "width": '100%', "class": 'form-control') }}
+                                                {{ form.render('titulo') }}
+                                                {# {{ text_field("titulo", "width": '100%', "class": 'form-control') }} #}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                {{ text_area("texto", "class": 'form-control tinymce-editor') }}
+                                                {{ form.render('texto') }}
+                                                {# {{ text_area("texto", "class": 'form-control tinymce-editor') }} #}
                                             </div>
                                         </div>
                                     </div>{#/.panel-body#}

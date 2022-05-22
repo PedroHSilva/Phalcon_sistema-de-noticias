@@ -43,9 +43,10 @@
                                                 <td class="titulo">{{ noticia.titulo }}</td>
                                                 <td class="text-center">{{noticia.texto}}</td>
                                                 <td>
-                                                    <a href="{{ url(['for':'noticia.editar',"id":noticia.id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                                    <a href="{{ url(['for':'noticia.excluir',"id":noticia.id]) }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                            </td>
+                                                    <a href="noticias/editar/{{noticia.id}}"><span class="glyphicon glyphicon-pencil"></span></a>                                    
+                                                    <a href="noticias/excluir/{{noticia.id}}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                                </td>
+                                            </tr>
                                         {% endfor %}
 										{# <tr>
                                             <td><a href="#">#1</a></td>

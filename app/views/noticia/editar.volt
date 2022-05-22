@@ -10,7 +10,7 @@
                         &nbsp;Editar Noticia
                     </div>
                     {{ form('noticias/salvar', 'method': 'post', 'enctype' : 'multipart/form-data', 'name':'cadastrar') }}
-                        
+                        {{ form.render('id', ['value': noticia.id]) }}
                         <div class="panel-body">
                             <div class="col-md-12"  id="conteudo">
                                 <div class="panel panel-default">
@@ -24,13 +24,15 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <input type="text" value="Texto 1" width='100%' class= "form-control">
+                                                {{ form.render('titulo', ['value': noticia.titulo]) }}
+                                                {# <input type="text" value="Texto 1" width='100%' class= "form-control"> #}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                <textarea class= "form-control">Texto 1</textarea>
+                                                {{ form.render('texto', ['value': noticia.texto]) }}
+                                                {# <textarea class= "form-control">Texto 1</textarea> #}
                                             </div>
                                         </div>
                                     </div>{#/.panel-body#}

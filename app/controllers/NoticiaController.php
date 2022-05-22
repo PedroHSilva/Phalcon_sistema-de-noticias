@@ -21,6 +21,12 @@ class NoticiaController extends ControllerBase
 
     public function editarAction($id)
     {
+        $form = new CadastrarNoticiaForm();
+        $this->view->form = $form;
+        
+        $noticia = Noticia::findFirstById($id);
+
+        $this->view->noticia = $noticia;
         $this->view->pick("noticia/editar");
     }
 
@@ -32,16 +38,36 @@ class NoticiaController extends ControllerBase
             if ($form->isValid($this->request->getPost())) {
                 $titulo = $this->request->getPost('titulo');
                 $texto = $this->request->getPost('texto');
+                $id = $this->request->getPost('id');
 
-                $noticia = new Noticia();
+                if ($id) {
+                    $noticia = Noticia::findFirst($id);
+                } else {
+                    $noticia = new Noticia();
+                }
+                
                 $noticia->titulo = $titulo;
                 $noticia->texto = $texto;
 
                 if ($noticia->save()) {
-                    $this->flash->success('Casdastro realizado com sucesso!');
+                    if ($id) {
+                        $this->flash->success('Atualizado com sucesso!');
+                    } else {
+                        $this->flash->success('Casdastro realizado com sucesso!');
+                    }
                 } else {
-                    $this->flash->error('Erro ao cadastrar noticia!');
+                    if ($id) {
+                        $this->flash->error('Erro ao atualizar noticia!');
+                    } else {
+                        $this->flash->error('Erro ao cadastrar noticia!');
+                    }
                 }
+            } else {
+                foreach ($form->getMessages() as $msg) {
+                    $this->flash->error($msg);
+
+                }
+                return $this->response->redirect(array('for' => 'noticia.cadastrar'));
             }
 
         }
@@ -50,6 +76,18 @@ class NoticiaController extends ControllerBase
 
     public function excluirAction($id)
     {
+        $noticia = Noticia::findFirstById($id);
+
+        if (!$noticia) {
+            $this->flash->error("Noticia não localizada!");
+            return $this->response->redirect(array('for' => 'noticia.lista'));
+        }
+
+        if (!$noticia->delete()) {
+            $this->flash->error("Erro ao tentar deletar!");
+            return $this->response->redirect(array('for' => 'noticia.lista'));
+        }
+        $this->flash->success("Deletado com sucesso!");
         return $this->response->redirect(array('for' => 'noticia.lista'));
     }
 

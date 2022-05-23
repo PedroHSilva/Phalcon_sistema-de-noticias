@@ -21,5 +21,4 @@ $router->add("/noticias/editar",                 array("controller" => "Noticia"
 $router->addPost("/noticias/salvar",             array("controller" => "Noticia", "action"           => "salvar"))->setName('noticia.salvar');
 $router->addGet("/noticias/excluir/{id:[0-9]*}",  array("controller" => "Noticia",  "action"          => "excluir"))->setName('noticia.excluir');
 
-
 return $router;

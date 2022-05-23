@@ -126,8 +126,7 @@
                                                     <a href="noticias/excluir/<?= $noticia->id ?>"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
-										
+                                        <?php } ?>								
 									</tbody>
 								</table>
                             </div><!-- panel-body -->
@@ -173,9 +172,7 @@
         </script>
 		
         
-
         <script>
-
             $(document).ready(function(){
 
                 
